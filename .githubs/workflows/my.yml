@@ -1,27 +1,20 @@
 name: tests
-
 on: push
-
 jobs:
-  run_tests:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17  # 修改这里的注释以反映使用的 JDK 版本
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17  # 修改这里的版本号为 17
-
-      - name: Cache Maven packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      - name: Run tests with Maven
-        run: mvn
+run_tests:
+runs-on: ubuntu-latest
+steps:
+  - name: Checkout the repository
+    uses: actions/checkout@v2
+  - name: Set up JDK 17
+    uses: actions/setup-java@v1
+    with:
+      java-version: 17
+  - name: Cache Maven packages
+    uses: actions/cache@v2
+    with:
+      path: ~/.m2
+      key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+      restore-keys: ${{ runner.os }}-m2
+  - name: Run tests with Maven
+run: mvn -B test --file pom.xml
