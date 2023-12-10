@@ -21,6 +21,6 @@ class Test {
         assertEquals(ans.get(0),1);
         assertEquals(ans.get(1),2);
         assertEquals(ans.get(2),4);
-        assertEquals(ans.get(3),7);
+        assertEquals(ans.get(3),8);
     }
 }
